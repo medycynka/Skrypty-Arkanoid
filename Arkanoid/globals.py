@@ -33,10 +33,11 @@ P_KEY = pygame.K_p
 R_KEY = pygame.K_r
 
 # Game Properties
+HIGH_SCORES = [0, 0, 0]
 PLAY = True
 PAUSE = False
 SCORE = 0
-LIVES = 1
+LIVES = 3
 SPRITES = pygame.sprite.Group()
 BRICKS = pygame.sprite.Group()
 MOVE_AMOUNT = 5
@@ -49,3 +50,10 @@ LVL2_COMPLETE = False
 LVL3_COMPLETE = False
 LVL4_COMPLETE = False
 LVL5_COMPLETE = False
+
+
+def update_high_scores(score: int) -> None:
+    for i in range(len(HIGH_SCORES)):
+        if score > HIGH_SCORES[i]:
+            HIGH_SCORES[i] = score
+            return
