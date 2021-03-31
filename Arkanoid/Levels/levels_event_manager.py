@@ -1,6 +1,7 @@
 from Arkanoid.setup import *
 import pygame
 from typing import Tuple
+import Arkanoid.Levels.main_menu as mm
 
 
 pause = False
@@ -68,6 +69,8 @@ def handle_events(event: pygame.event) -> Tuple[bool, bool]:
         return False, False
     elif event.type == gl.KEYDOWN_EVENT and (event.key == gl.P_KEY):
         return pause_game()
+    elif event.type == mm.SONG_END:
+        mm.queue_next_song()
 
     return True, True
 
@@ -76,11 +79,14 @@ def pause_game() -> Tuple[bool, bool]:
     global pause
 
     pause = True
+    pygame.mixer.music.pause()
+
     while pause:
         event = pygame.event.wait()
 
         if event.type == gl.KEYDOWN_EVENT and (event.key == gl.P_KEY):
             pause = False
+            pygame.mixer.music.unpause()
         elif event.type == gl.CLOSE_WINDOW:
             pause = False
 

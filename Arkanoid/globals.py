@@ -20,6 +20,8 @@ BLUE = (0, 0, 255)
 CYAN = (0, 255, 255)
 PALEBLUE = (36, 90, 190)
 LIGHTBLUE = (0, 176, 240)
+LIGHT_GREY = (220, 220, 220)
+GREY = (128, 128, 128)
 BLACK = (0, 0, 0)
 
 # Event types

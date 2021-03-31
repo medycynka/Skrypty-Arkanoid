@@ -1,13 +1,13 @@
 import globals as gl
-from typing import List
+from typing import List, Tuple
 import player
 import ball
 import brick
 import pygame
 
 
-def set_up(paddle_width: int, start_x: int, start_y: int, col: int, ball_speed: int, hps: List, colors: List) \
-        -> (player.Player, ball.Ball, pygame.font.Font):
+def set_up(paddle_width: int, start_x: int, start_y: int, col: int, ball_speed: int, hps: List, colors: List,
+           effect: pygame.mixer.Sound) -> Tuple[player.Player, ball.Ball, pygame.font.Font]:
     pygame.init()
     pygame.display.set_caption(gl.TITLE)
     f = pygame.font.Font(None, 34)
@@ -16,7 +16,7 @@ def set_up(paddle_width: int, start_x: int, start_y: int, col: int, ball_speed: 
     p.rect.x = int((gl.WIDTH - 100) / 2)
     p.rect.y = gl.HEIGHT - 40
 
-    bo = ball.Ball(10, 10, ball_speed, gl.BLACK, gl.WHITE)
+    bo = ball.Ball(10, 10, ball_speed, gl.BLACK, gl.WHITE, effect)
     bo.rect.x = int((gl.WIDTH - 100) / 2)
     bo.rect.y = gl.HEIGHT - 55
 

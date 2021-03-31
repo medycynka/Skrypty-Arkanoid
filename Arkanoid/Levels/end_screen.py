@@ -45,12 +45,14 @@ def handle_events(event: pygame.event, back_btn: btn.Button, quit_btn: btn.Butto
         return False, False, False
     elif event.type == gl.KEYDOWN_EVENT and (event.key == gl.P_KEY):
         pause = True
+        pygame.mixer.pause()
 
         while pause:
             event = pygame.event.wait()
 
             if event.type == gl.KEYDOWN_EVENT and (event.key == gl.P_KEY):
                 pause = False
+                pygame.mixer.unpause()
             elif event.type == gl.CLOSE_WINDOW:
                 pause = False
 
