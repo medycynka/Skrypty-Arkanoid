@@ -83,9 +83,11 @@ def update_screen(bf: pygame.font.Font, nf: pygame.font.Font, curr_score: int, s
     text = nf.render("Your score: " + str(curr_score), 1, gl.WHITE)
     gl.SCREEN.blit(text, (int(gl.WIDTH / 2 - text.get_width() / 2), 175))
 
+    text = nf.render("High scores:", 1, gl.WHITE)
+    gl.SCREEN.blit(text, (int(gl.WIDTH / 2 - text.get_width() / 2), 300 - text.get_height() - 10))
     for i in range(len(scores)):
         text = nf.render(f'{i+1}.   {scores[i]}', 1, gl.WHITE)
-        gl.SCREEN.blit(text, (int(gl.WIDTH / 2 - text.get_width() / 2), 250 + i * (text.get_height() + 10)))
+        gl.SCREEN.blit(text, (int(gl.WIDTH / 2 - text.get_width() / 2), 300 + i * (text.get_height() + 10)))
 
     pygame.display.flip()
     gl.CLOCK.tick(60)

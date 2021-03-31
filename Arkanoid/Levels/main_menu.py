@@ -21,12 +21,10 @@ def main_menu() -> Tuple[bool, bool, bool]:
     normal_f = pygame.font.Font(None, 34)
 
     play_btn = btn.Button(250, 50, 34, gl.BLACK, gl.BLACK, gl.WHITE, "Play")
-    play_btn.rect.x = int(gl.WIDTH / 2) - 125
-    play_btn.rect.y = int(gl.HEIGHT / 3) + int(gl.HEIGHT / 6)
+    play_btn.rect.center = (int(gl.WIDTH / 2), int(gl.HEIGHT / 4) * 2 + int(gl.HEIGHT / 8))
     gl.SPRITES.add(play_btn)
     quit_btn = btn.Button(250, 50, 34, gl.BLACK, gl.BLACK, gl.WHITE, "Quit")
-    quit_btn.rect.x = int(gl.WIDTH / 2) - 125
-    quit_btn.rect.y = int(gl.HEIGHT / 3) * 2
+    quit_btn.rect.center = (int(gl.WIDTH / 2), int(gl.HEIGHT / 4) * 3)
     gl.SPRITES.add(quit_btn)
 
     while menu:
@@ -84,8 +82,22 @@ def update_screen(bf: pygame.font.Font, title: str, nf: pygame.font.Font, author
     gl.SCREEN.blit(text, (int(gl.WIDTH / 2 - text.get_width() / 2), 100))
     text = nf.render(author, 1, gl.WHITE)
     gl.SCREEN.blit(text, (int(gl.WIDTH / 2 - text.get_width() / 2), 175))
-    text = nf.render("Current high score: " + str(HIGH_SCORES[0]), 1, gl.WHITE)
-    gl.SCREEN.blit(text, (int(gl.WIDTH / 2 - text.get_width() / 2), 300))
+    text = nf.render("Current high scores:", 1, gl.WHITE)
+    gl.SCREEN.blit(text, (int(gl.WIDTH / 2 - text.get_width() / 2), 275))
+    text = nf.render("1.   " + str(HIGH_SCORES[0]), 1, gl.WHITE)
+    gl.SCREEN.blit(text, (int(gl.WIDTH / 2 - text.get_width() / 2), 275 + text.get_height() + 10))
+    text = nf.render("2.   " + str(HIGH_SCORES[1]), 1, gl.WHITE)
+    gl.SCREEN.blit(text, (int(gl.WIDTH / 2 - 2 * text.get_width() - 10), 275 + 2 * (text.get_height() + 10)))
+    text = nf.render("3.   " + str(HIGH_SCORES[2]), 1, gl.WHITE)
+    gl.SCREEN.blit(text, (int(gl.WIDTH / 2 + text.get_width() + 10), 275 + 2 * (text.get_height() + 10)))
+    text = nf.render("4.   " + str(HIGH_SCORES[3]), 1, gl.WHITE)
+    gl.SCREEN.blit(text, (int(gl.WIDTH / 2 - 2 * (2 * text.get_width() - 10) - 10), 275 + 3 * (text.get_height() + 10)))
+    text = nf.render("5.   " + str(HIGH_SCORES[4]), 1, gl.WHITE)
+    gl.SCREEN.blit(text, (int(gl.WIDTH / 2 - 2 * text.get_width() + 10), 275 + 3 * (text.get_height() + 10)))
+    text = nf.render("6.   " + str(HIGH_SCORES[5]), 1, gl.WHITE)
+    gl.SCREEN.blit(text, (int(gl.WIDTH / 2 + text.get_width() - 10), 275 + 3 * (text.get_height() + 10)))
+    text = nf.render("7.   " + str(HIGH_SCORES[6]), 1, gl.WHITE)
+    gl.SCREEN.blit(text, (int(gl.WIDTH / 2 + 2 * (text.get_width() + 10) + 10), 275 + 3 * (text.get_height() + 10)))
 
     pygame.display.flip()
     gl.CLOCK.tick(60)
@@ -97,11 +109,11 @@ def init_high_scores() -> None:
 
     global HIGH_SCORES
 
-    HIGH_SCORES = [0, 0, 0, 0, 0, 0, 0]
+    HIGH_SCORES = []
 
     with open('scores/high_scores.txt', 'r') as file:
-        for i in range(len(HIGH_SCORES)):
-            HIGH_SCORES[i] = int(file.readline().strip())
+        for i in range(7):
+            HIGH_SCORES.append(int(file.readline().strip()))
 
 
 def update_high_scores(score: int) -> None:

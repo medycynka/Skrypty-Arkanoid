@@ -20,6 +20,7 @@ if __name__ == '__main__':
     lvl5_complete = False
     score = 0
     lives = 3
+    mm.init_high_scores()
 
     while main_loop:
         if main_menu:
