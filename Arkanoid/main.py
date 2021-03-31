@@ -24,7 +24,7 @@ if __name__ == '__main__':
     mm.init_high_scores()
     mm.set_up_music()
     bounce_effect = pygame.mixer.Sound('Music/CollisionSounds/button-10.wav')
-    bounce_effect.set_volume(0.5)
+    bounce_effect.set_volume(0.25)
 
     while main_loop:
         if main_menu:
